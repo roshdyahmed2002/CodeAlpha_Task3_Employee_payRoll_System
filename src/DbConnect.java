@@ -57,7 +57,7 @@ public class DbConnect {
         }
     }
 
-    public static void insertEmployee(Connection connection, String name, int hourlyRate, int hoursWorked) throws Exception {
+    public void insertEmployee(Connection connection, String name, int hourlyRate, int hoursWorked) throws Exception {
         String sql = "INSERT INTO Employee (name, hourly_rate, hours_worked) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, name);
@@ -68,7 +68,7 @@ public class DbConnect {
         }
     }
 
-    public static ArrayList<Employee> readEmployeeData(Connection connection) throws Exception {
+    public ArrayList<Employee> readEmployeeData(Connection connection) throws Exception {
         String sql = "SELECT * FROM Employee";
         ArrayList<Employee> employees = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql);
@@ -85,8 +85,9 @@ public class DbConnect {
         return employees;
     }
 
-    public static void deleteEmployee(Connection connection, int employeeId) throws Exception {
+    public void deleteEmployee(Connection connection, int employeeId) throws Exception {
         String sql = "DELETE FROM Employee WHERE employee_id = ?";
+        System.out.println("HERE DELETE");
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, employeeId);
             statement.executeUpdate();

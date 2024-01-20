@@ -81,6 +81,7 @@ public class PayrollUI {
 
 
          dbConnect = new DbConnect();
+         dbConnect.createTables();
 
         // Add sample data to the table
         addSampleData();
@@ -112,10 +113,11 @@ public class PayrollUI {
         // Add some sample data to the table
         addEmployeeToTable(1, "John Doe", 20, 40);
         addEmployeeToTable(2, "Jane Smith", 18, 35);
-        addEmployeeToTable(3, "Bob Johnson", 25, 30);
+        addEmployeeToTable(3, "Roshdy", 10, 10);
+        addEmployeeToTable(4, "Bob Johnson", 25, 30);
 
         // Uncomment the code below if you want to load data from the database
-        /*
+
         try {
             ArrayList<Employee> employees = dbConnect.readEmployeeData(dbConnect.getConnect());
 
@@ -125,7 +127,7 @@ public class PayrollUI {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        */
+
     }
 
     private void addEmployeeToTable(int empId, String empName, int hourlyRate, int hoursWorked) {
@@ -140,7 +142,8 @@ public class PayrollUI {
         if (confirm == JOptionPane.YES_OPTION) {
             // Perform deletion from the database
             try {
-              //  dbConnect.deleteEmployee(dbConnect.getConnect(), empId);
+                dbConnect.deleteEmployee(dbConnect.getConnect(), empId);
+                System.out.println("deletedd donee");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
